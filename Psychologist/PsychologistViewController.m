@@ -7,28 +7,52 @@
 //
 
 #import "PsychologistViewController.h"
+#import "HappinessViewController.h"
 
 @interface PsychologistViewController ()
-
+@property (nonatomic) int diagnosis;
 @end
 
 @implementation PsychologistViewController
 
-- (void)viewDidLoad
+@synthesize diagnosis = _diagnosis;
+
+- (void) setAndShowDiagnosis:(int) diagnosis
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    self.diagnosis = diagnosis;
+    [self performSegueWithIdentifier:@"showDiagnosis" sender:self];
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
+- (IBAction)flying {
+    [self setAndShowDiagnosis:85];
 }
+
+- (IBAction)apple {
+    [self setAndShowDiagnosis:100];
+}
+
+- (IBAction)dragons {
+    [self setAndShowDiagnosis:20];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"showDiagnosis"]) {
+        [segue.destinationViewController setHappiness:self.diagnosis];
+    } else if([segue.identifier isEqualToString:@"watchTV"]) {
+        [segue.destinationViewController setHappiness:50];
+    } else if([segue.identifier isEqualToString:@"problem"]) {
+        [segue.destinationViewController setHappiness:20];
+    } else if([segue.identifier isEqualToString:@"celebrity"]) {
+        [segue.destinationViewController setHappiness:100];
+    }
+    
+}
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    return YES;
 }
 
 @end
