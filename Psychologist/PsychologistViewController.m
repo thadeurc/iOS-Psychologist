@@ -17,10 +17,23 @@
 
 @synthesize diagnosis = _diagnosis;
 
+
+- (HappinessViewController *) splitViewHappinessViewController{
+    id hvc = [self.splitViewController.viewControllers lastObject];
+    if(![hvc isKindOfClass:[HappinessViewController class]]){
+        hvc = nil;
+    }
+    return hvc;
+}
+
 - (void) setAndShowDiagnosis:(int) diagnosis
 {
     self.diagnosis = diagnosis;
-    [self performSegueWithIdentifier:@"showDiagnosis" sender:self];
+    if([self splitViewHappinessViewController]){
+        [self splitViewHappinessViewController].happiness = diagnosis;
+    }else{
+        [self performSegueWithIdentifier:@"showDiagnosis" sender:self];
+    }
 }
 
 - (IBAction)flying {
@@ -35,18 +48,39 @@
     [self setAndShowDiagnosis:20];
 }
 
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (id <SplitViewBarButtonItemPresenter>)splitViewBarButtonItemPresenter
 {
-    if([segue.identifier isEqualToString:@"showDiagnosis"]) {
-        [segue.destinationViewController setHappiness:self.diagnosis];
-    } else if([segue.identifier isEqualToString:@"watchTV"]) {
-        [segue.destinationViewController setHappiness:50];
-    } else if([segue.identifier isEqualToString:@"problem"]) {
-        [segue.destinationViewController setHappiness:20];
-    } else if([segue.identifier isEqualToString:@"celebrity"]) {
-        [segue.destinationViewController setHappiness:100];
+    id detailVC = [self.splitViewController.viewControllers lastObject];
+    if (![detailVC conformsToProtocol:@protocol(SplitViewBarButtonItemPresenter)]) {
+        detailVC = nil;
     }
-    
+    return detailVC;
+}
+
+- (void)transferSplitViewBarButtonItemToViewController:(id)destinationViewController
+{
+    UIBarButtonItem *splitViewBarButtonItem = [[self splitViewBarButtonItemPresenter] splitViewBarButtonItem];
+    [[self splitViewBarButtonItemPresenter] setSplitViewBarButtonItem:nil];
+    if (splitViewBarButtonItem) {
+        [destinationViewController setSplitViewBarButtonItem:splitViewBarButtonItem];
+    }
+}
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"ShowDiagnosis"]) {
+        [segue.destinationViewController setHappiness:self.diagnosis];
+    } else if ([segue.identifier isEqualToString:@"celebrity"]) {
+        [self transferSplitViewBarButtonItemToViewController:segue.destinationViewController];
+        [segue.destinationViewController setHappiness:100];
+    } else if ([segue.identifier isEqualToString:@"problem"]) {
+        [self transferSplitViewBarButtonItemToViewController:segue.destinationViewController];
+        [segue.destinationViewController setHappiness:20];
+    } else if ([segue.identifier isEqualToString:@"watchTV"]) {
+        [self transferSplitViewBarButtonItemToViewController:segue.destinationViewController];
+        [segue.destinationViewController setHappiness:50];
+    }
 }
 
 
