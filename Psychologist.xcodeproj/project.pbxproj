@@ -27,7 +27,6 @@
 		1A6256D815602207000BD50E /* RotatableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotatableViewController.h; sourceTree = "<group>"; };
 		1A6256D915602207000BD50E /* RotatableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotatableViewController.m; sourceTree = "<group>"; };
 		1A6256DB15602440000BD50E /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = "<group>"; };
-		1A7B86DB1560BB3B005A6D41 /* SplitViewBarButtonItemPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SplitViewBarButtonItemPresenter.h; path = ../SplitViewBarButtonItemPresenter.h; sourceTree = "<group>"; };
 		1A7B86DD1560C44A005A6D41 /* DrPillWebsiteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrPillWebsiteViewController.h; sourceTree = "<group>"; };
 		1A7B86DE1560C44A005A6D41 /* DrPillWebsiteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrPillWebsiteViewController.m; sourceTree = "<group>"; };
 		1AB0388B15520F34001AA041 /* Psychologist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Psychologist.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,7 +95,6 @@
 				1A0F2048156324C1006E16A8 /* SplitViewBarButtonItemPresenter.h */,
 				1A7B86DD1560C44A005A6D41 /* DrPillWebsiteViewController.h */,
 				1A7B86DE1560C44A005A6D41 /* DrPillWebsiteViewController.m */,
-				1A7B86DB1560BB3B005A6D41 /* SplitViewBarButtonItemPresenter.h */,
 				1AB038AC155219FC001AA041 /* FaceView.h */,
 				1AB038AD155219FC001AA041 /* FaceView.m */,
 				1AB038AE155219FC001AA041 /* HappinessViewController.h */,

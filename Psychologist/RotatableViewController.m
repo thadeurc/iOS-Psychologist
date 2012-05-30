@@ -30,6 +30,11 @@
     self.splitViewController.delegate = self;
 }
 
+- (void) viewDidLoad
+{
+    [super viewDidLoad];
+}
+
 - (BOOL) splitViewController:(UISplitViewController *)svc 
             shouldHideViewController:(UIViewController *)vc 
                inOrientation:(UIInterfaceOrientation)orientation
